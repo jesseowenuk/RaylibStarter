@@ -3,25 +3,23 @@
 void setup()
 {
     // Setup code goes here
-}
-
-void draw()
-{
-    // This is drawn every frame
-    ClearBackground(Color({220, 0, 200, 255}));
-
-    DrawLine(0, 50, 400, 300, BLACK);
-    DrawRectangle(400 / 2 - 75, 300 / 2 - 75, 150, 150, WHITE);
-}
-
-int main()
-{
     const int screenWidth = 400;
     const int screenHeight = 300;
 
     InitWindow(screenWidth, screenHeight, "Raylib Starter Project");
     SetTargetFPS(60);
+}
 
+void draw()
+{
+    // This is drawn every frame
+    ClearBackground(BLACK);
+
+    DrawEllipse(200, 150, 75, 75, WHITE);
+}
+
+int main()
+{
     setup();
 
     while(!WindowShouldClose())
@@ -29,8 +27,6 @@ int main()
         BeginDrawing();
 
         draw();
-
-        
 
         EndDrawing();
     }
