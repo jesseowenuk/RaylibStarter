@@ -1,21 +1,27 @@
 #include "raylib.h"
 
+RenderTexture2D canvas;
+
 void setup()
 {
-    // Setup code goes here
-    const int screenWidth = 400;
-    const int screenHeight = 300;
+    // Specify the screen width and height
+    const int screen_width = 400;
+    const int screen_height = 300;
 
-    InitWindow(screenWidth, screenHeight, "Raylib Starter Project");
+    // Initialise the window
+    InitWindow(screen_width, screen_height, "Raylib Starter Project");
     SetTargetFPS(60);
+
+    // Create a texture to draw to
+    canvas = LoadRenderTexture(screen_width, screen_height);
 }
 
 void draw()
 {
-    // This is drawn every frame
+    // This is drawn every frame - put drawing calls here
     ClearBackground(BLACK);
 
-    DrawEllipse(200, 150, 75, 75, WHITE);
+    DrawEllipse(200, 150, 24, 24, WHITE);
 }
 
 int main()
@@ -24,13 +30,25 @@ int main()
 
     while(!WindowShouldClose())
     {
+        BeginTextureMode(canvas);
+        draw();
+        EndTextureMode();
+
+        // Draw the frame to the screen
         BeginDrawing();
 
-        draw();
+        DrawTextureRec(
+            canvas.texture,
+            {0, 0, (float)canvas.texture.width, -(float)canvas.texture.height},
+            {0, 0},
+            WHITE
+        );
 
         EndDrawing();
     }
 
+    // Clean up after ourselves
+    UnloadRenderTexture(canvas);
     CloseWindow();
 
     return 0;
