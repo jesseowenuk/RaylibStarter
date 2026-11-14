@@ -1,11 +1,12 @@
 #include "raylib.h"
 
+#include <vector>
+
 #include "bubble.h"
 
 RenderTexture2D canvas;
 
-Bubble my_bubble1(200, 200, 20);
-Bubble my_bubble2(400, 200, 10);
+std::vector<Bubble> bubbles;
 
 void setup()
 {
@@ -26,12 +27,18 @@ void draw()
     // This is drawn every frame - put drawing calls here
     ClearBackground(BLACK);
 
-    my_bubble1.move();
-    my_bubble1.show();
+    if(IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+    {
+        int r = GetRandomValue(10, 50);
+        Bubble b(GetMouseX(), GetMouseY(), r);
+        bubbles.emplace_back(b);
+    }
 
-    my_bubble2.move();
-    my_bubble2.show();
-    
+    for(int i = 0; i < bubbles.size(); i++)
+    {
+        bubbles[i].move();
+        bubbles[i].show();
+    }
 }
 
 int main()
