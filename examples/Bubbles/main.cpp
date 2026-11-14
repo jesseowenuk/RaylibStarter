@@ -34,10 +34,10 @@ void draw()
         bubbles.emplace_back(b);
     }
 
-    for(int i = 0; i < bubbles.size(); i++)
+    for(Bubble a_bubble : bubbles)
     {
-        bubbles[i].move();
-        bubbles[i].show();
+        a_bubble.move();
+        a_bubble.show();
     }
 }
 
