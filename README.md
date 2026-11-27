@@ -12,7 +12,9 @@ Then in the root directory run
 ```
 cmake -S . -B build
 cmake --build buld
-./build RaylibStarter
+cd build && ./RaylibStarter && cd ..
 ```
 
 Note: Of course change the project name to whatever you call it.
+
+To run the examples copy the code from the examples directory into the root directory.
